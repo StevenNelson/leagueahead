@@ -1,0 +1,9 @@
+#! /bin/bash
+
+cat header.tmpl index.tmpl footer.tmpl > www/index.html
+cat header.tmpl login.tmpl footer.tmpl > www/login.html
+cat header.tmpl signup.tmpl footer.tmpl > www/signup.html
+cat header.tmpl org.tmpl footer.tmpl > www/org.html
+cat header.tmpl teams.tmpl footer.tmpl > www/teams.html
+cat header.tmpl profile.tmpl footer.tmpl > www/profile.html
+

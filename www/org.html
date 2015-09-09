@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LeageAhead</title>
+    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/app.js"></script>
+    <script src=" //cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" media="all" href="smoove.min.css" />
+    <link rel="stylesheet" media="all" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner g">
+            <div class="u-sm-6 u-md-6">
+                <span class="header-page-info">
+                    <span class="header-page-title">League Ahead</span>
+                </span>
+            </div>
+            <div class="u-sm-6 u-md-6">
+                <nav class="nav--header text-right ">
+                    <a href="signup.html" class="button--link">Sign Up</a>
+                    <a href="" class="button--link" id="authButton"></a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="page page--app  g">
+        <div class="u-md-3  sidebar  sidebar--app">
+            <nav>
+                <a href="" class="button--link text-left"><i class="icon fa-fw fa-cube"></i>Organization</a>
+                <a href="" class="button--link text-left"><i class="icon fa-fw fa-cube"></i>League</a>
+                <a href="" class="button--link text-left"><i class="icon fa-fw fa-cube"></i>Division</a>
+                <a href="" class="button--link text-left"><i class="icon fa-fw fa-cube"></i>Team</a>
+            </nav>
+        </div>
+        <div class="u-md-7 offset-md-4">    
+            <h1>Welcome Player 1</h1>
+            <form class="card card-pad-md" actio="#" id="orgForm">
+                <fieldset>
+                    <label for="orgName">Name</label>
+                    <input id="orgName" class="input-fit" type="text" />
+                </fieldset>            
+                <fieldset>
+                    <label for="orgOwner">Owner</label>
+                    <input id="orgOwner" class="input-fit" type="text" />
+                </fieldset>            
+                <fieldset>
+                    <label for="orgContact">Contact</label>
+                    <input id="orgContact" class="input-fit" type="text" />
+                </fieldset>            
+                <fieldset>
+                    <button class="button--block" type="submit">Create Org</button>
+                </fieldset>
+            </form>
+        </div>
+    </div> 
+</body>
+</html>
+
