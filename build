@@ -5,5 +5,7 @@ cat header.tmpl login.tmpl footer.tmpl > www/login.html
 cat header.tmpl signup.tmpl footer.tmpl > www/signup.html
 cat header.tmpl org.tmpl footer.tmpl > www/org.html
 cat header.tmpl teams.tmpl footer.tmpl > www/teams.html
-cat header.tmpl profile.tmpl footer.tmpl > www/profile.html
+cat header.tmpl start.tmpl footer.tmpl > www/start.html
+cat header.tmpl orgs.tmpl footer.tmpl > www/orgs.html
+cat header.tmpl leagues.tmpl footer.tmpl > www/leagues.html
 

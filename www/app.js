@@ -84,6 +84,7 @@ var LA = (function(){
 }());
 
 $(function(){
+    
     if($("#loginForm")){
         $("#loginForm").submit( function(e){
             e.preventDefault();
@@ -92,7 +93,7 @@ $(function(){
                 password: $("#pass").val()
             }, function (error, userData) {
                 if (error) {
-                    toastr.info("There was a problem logging in. Try again");
+                    toastr.warning("There was a problem logging in. Try again");
                     console.log(error);
                 } else {
                     location.href = "profile.html";
@@ -105,55 +106,61 @@ $(function(){
             fb.unauth();
         });
     }
-    if($("orgForm")){
-        $("orgForm").submit( function(e){
-            e.preventDefault();
-            var orgRef = fb.child("Orgs");
-
+    $("#orgForm").submit( function(e){
+        e.preventDefault();
+        var orgRef = fb.child("Orgs");
+        
+        var userData = fb.getAuth();
+        if(userData){
             var newOrg = {
-                Name: document.getElementById("orgName").value,
-                Owner: document.getElementById("orgOwner").value,
-            Contact: document.getElementById("orgContact").value
+                Name: $("#orgName").val(),
+                Owner: userData.uid, 
+                Contact: $("#orgContact").val()
             };
 
             orgRef.push(newOrg);
+            toastr.success("Organization Created");
+        } else {
+            toastr.warning("Authentication Error");
+        }
+
+    });
+
+    $("#signupForm").submit(function(e){
+        e.preventDefault();
+        fb.createUser({ // Create the User
+            email: $("#newUser").val(),
+            password: $("#newPass").val()
+        }, function(error, userData) {
+            // Answer the callback after user creation
+            if (error) {
+                toastr.error("Signup Failed");
+            console.log(error);
+            } else {
+                // Assuming successful user creation, log them in
+                fb.authWithPassword({
+                    email: $("#newUser").val(),
+                    password: $("#newPass").val()
+                }, function (error, userData){
+                    // Acknowledge the case where they may sign up, but fail
+                    // to log in
+                    if (error) {
+                        toastr.error("Logging in failed");
+                        console.log(error);
+                    } else {
+                        location.href = "profile.html";
+                    }
+                });
+            }
         });
-    }
-    if($("#signupForm")) {
-        $("#signupForm").submit(function(e){
-            e.preventDefault();
-            fb.createUser({
-                email: $("#newUser").val(),
-                password: $("#newPass").val()
-            }, function(error, userData) {
-                if (error) {
-                    toastr.info("Signup Failed");
-                    console.log(error);
-                } else {
-                    fb.authWithPassword({
-                        email: $("#newUser").val(),
-                        password: $("#newPass").val()
-                    }, function (error, userData){
-                        if (error) {
-                            toastr.info("Logging in failed");
-                            console.log(error);
-                        } else {
-                            location.href = "profile.html";
-                        }
-                    });
-                }
-            });
-        });
-    }
+    });
+
     fb.onAuth(authDataCallback);
-    //setTimeout(authDataCallback, 0);
 });
 function authDataCallback(userData) {
-    //var userData = fb.getAuth();
     if(userData) {
         $("#authButton").text("Logout");
         $("#authButton").click(logout);        
-
     } else {
         $("#authButton").attr("href", "login.html");
         $("#authButton").text("Login");
