@@ -96,7 +96,7 @@ $(function(){
                     toastr.warning("There was a problem logging in. Try again");
                     console.log(error);
                 } else {
-                    location.href = "profile.html";
+                    location.href = "start.html";
                 }
             });
         });
@@ -118,8 +118,12 @@ $(function(){
                 Contact: $("#orgContact").val()
             };
 
-            orgRef.push(newOrg);
+            var newOrg = orgRef.push(newOrg);
+
+            
+
             toastr.success("Organization Created");
+            location.href = "/orgs/view.html?id=" + encodeURIComponent(newOrg.key());  
         } else {
             toastr.warning("Authentication Error");
         }
@@ -149,6 +153,17 @@ $(function(){
                         console.log(error);
                     } else {
                         location.href = "profile.html";
+
+                        // Create a user object
+                        var userRef = fb.child("Users/" + userData.uid);
+                        var user = {
+                            Teams: [],
+                            Leagues: [],
+                            Orgs: [],
+                            Divisions: []
+                        };
+                        userRef.set(user);
+
                     }
                 });
             }

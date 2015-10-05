@@ -92,3 +92,19 @@ var SeedData = (function(ref){
             Owner: profiles[0].key(),
             Teams: []
         }; 
+    }
+}    
+
+// Slice off then people for org owners
+var orgs = [];
+var orgRef = fb.child("Orgs");
+var leagues = [];
+var divisions = [];
+var teams = [];
+var Facilities = [];
+
+for ( var o = 0; o < orgs.length; o++){
+    orgs[0].Owner = People.splice(0,1);
+    
+
+
